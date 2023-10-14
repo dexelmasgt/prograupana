@@ -22,4 +22,5 @@ function dividir_y_verificar_multiplo_2($num1, $num2){
 $otrores = dividir_y_verificar_multiplo_2(50,10);
 echo $otrores;
 
+echo "otro texto";
 ?>
