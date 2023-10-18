@@ -14,3 +14,12 @@ function est_nuevo($nombre_estudiante, $apellido_estudiante, $edad_estudiante, $
 function suma($n1, $n2){
     return $n1 + $n2;
 }
+
+function saludar($nombre){
+    echo 'Hola ' . $nombre . '<br>';
+} 
+
+function suma2($numero1, $numero2){
+    $resultado = $numero1 + $numero2;
+    return $resultado;
+}
