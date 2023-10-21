@@ -65,4 +65,74 @@ $multi2 = 3;
 echo multiplicar($multi1, $multi2);
 
 separador();
+
+function mostrarNumero($num){ 
+	echo $num; 
+} 
+$num =50; 
+mostrarNumero($num);
+
+separador();
+
+//Ejercicio 7
+
+$num1 = 1;
+$num2 = 2;
+$num3 = 3;
+
+function suma($num1, $num2, $num3){
+    $num3 = $num1 + $num2;
+    return $num3;
+}
+
+echo suma(1,1,3);
+
+separador();
+
+//Ejercicio 8
+
+function meses($num){
+    $meses = array('Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio');
+    foreach ($meses as $key => $value) {
+        if ($key == $num-1) {
+            echo "Encontramos el mes y es $value";
+        }
+    }
+  
+}
+ $num = 6;
+    meses($num);
+
+separador();
+
+//calcule iva
+
+function calculariva1($base, $impuesto){
+    if ($impuesto <= 0) {
+        $impuesto = 12;
+    }
+
+    $resultado = $base * ($impuesto/100);
+    return $resultado;
+
+
+    
+}
+
+echo calculariva1(1000,0);
+
+separador();
+
+function calcularIVA($valor, $porcentaje = 12) { $iva = $valor * $porcentaje / 100; return $iva; } echo "IVA de 1000 es: " . calcularIVA(1000) . "\n"; echo "IVA de 1000 con el 8% es: " . calcularIVA(1000, 8) . "\n"; echo "IVA de 10 con el 0% es: " . calcularIVA(10, 0) . "\n";
+
+
+separador();
+//Ejercicio 10
+
+function promedio($num1, $num2){
+    $promedio = ($num1+$num2)/2;
+    return $promedio;
+}
+
+echo promedio(4,6);
 ?>
