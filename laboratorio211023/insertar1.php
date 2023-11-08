@@ -39,19 +39,13 @@
           <li class="nav-item">
            
               <li class="nav-item">
-                <a href="index.php" class="nav-link active">
+                <a href="index.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Ejercicio 1</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="consultar.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Consultar en BD</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="insertar1.php" class="nav-link">
+                <a href="insertar1.php" class="nav-link active">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Insertar en BD</p>
                 </a>
@@ -75,7 +69,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Laboratorio 21-10-2023</h1>
+            <h1>INSERTAR EN BASE DE DATOS</h1>
           </div>
           
         </div>
@@ -88,7 +82,7 @@
       <!-- Default box -->
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Analisis de salarios</h3>
+          <h3 class="card-title">Datos para insertar</h3>
 
           <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
@@ -103,11 +97,11 @@
           <!-- general form elements -->
           <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Analisis de salarios</h3>
+                <h3 class="card-title">Datos del alumno</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form action="salario.php" method="post">
+              <form action="insertar2.php" method="post">
                 <div class="card-body">
                   <div class="form-group">
                     <label for="nombre">Nombres</label>
@@ -118,18 +112,23 @@
                     <input type="text" class="form-control" id="apellidos" name="apellido" placeholder="Apellidos">
                   </div>
                   <div class="form-group">
-                    <label for="salario">Salario</label>
-                    <input  step="any" type="number" class="form-control" id="salario" name="salario" placeholder="Salario">
+                    <label for="fecnac">Fecha de nacimiento</label>
+                    <input  step="any" type="text" class="form-control" id="fecnac" name="fecnac" placeholder="Fecha de nacimiento">
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="grado">Grado</label>
+                    <input type="text" class="form-control" id="grado" name="grado" placeholder="Grado">
                   </div>
                   <div class="form-group">
-                    <label for="edad">Edad</label>
-                    <input  step="any" type="number" class="form-control" id="edad" name="edad" placeholder="Edad">
+                    <label for="carrera">Carrera</label>
+                    <input type="text" class="form-control" id="carrera" name="carrera" placeholder="Carrera">
                   </div>
                 </div>
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Analizar</button>
+                  <button type="submit" class="btn btn-primary">Guardar</button>
                 </div>
                 
               </form>

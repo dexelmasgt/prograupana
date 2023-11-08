@@ -44,18 +44,6 @@
                   <p>Ejercicio 1</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="consultar.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Consultar en BD</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="insertar1.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Insertar en BD</p>
-                </a>
-              </li>
               
             </ul>
           </li>
@@ -88,7 +76,7 @@
       <!-- Default box -->
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Analisis de salarios</h3>
+          <h3 class="card-title">INSERTAR EN BASE DE DATOS</h3>
 
           <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
@@ -103,36 +91,52 @@
           <!-- general form elements -->
           <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Analisis de salarios</h3>
+                <h3 class="card-title">Insertar en base de datos</h3>
               </div>
               <!-- /.card-header -->
-              <!-- form start -->
-              <form action="salario.php" method="post">
-                <div class="card-body">
-                  <div class="form-group">
-                    <label for="nombre">Nombres</label>
-                    <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombres">
-                  </div>
-                  <div class="form-group">
-                    <label for="apellidos">Apellidos</label>
-                    <input type="text" class="form-control" id="apellidos" name="apellido" placeholder="Apellidos">
-                  </div>
-                  <div class="form-group">
-                    <label for="salario">Salario</label>
-                    <input  step="any" type="number" class="form-control" id="salario" name="salario" placeholder="Salario">
-                  </div>
-                  <div class="form-group">
-                    <label for="edad">Edad</label>
-                    <input  step="any" type="number" class="form-control" id="edad" name="edad" placeholder="Edad">
-                  </div>
-                </div>
-                <!-- /.card-body -->
-
-                <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Analizar</button>
-                </div>
+              <div class="card-body">  
+                <?php
+                  $nombre = $_POST['nombre'];
+                  $apellido = $_POST['apellido'];
+                  $fecnac = $_POST['fecnac'];
+                  $grado = $_POST['grado'];
+                  $carrera = $_POST['carrera'];
                 
-              </form>
+                 
+                
+                  //CODIGO PARA GUARDAR EN BASE DE DATOS
+                  
+                    //Ejemplo de insertar registro en base de datos MySQL con PHP.
+
+                    //Guardamos en viariables los parámetros de la base de datos
+                    $usuario = "root";
+                    $password = "";
+                    $servidor = "localhost";
+                    $basededatos = "prograupana2";
+
+                    //Creamos la conexión a la base de datos. Usamos la función mysqli_connect()
+                    $conexion = mysqli_connect($servidor, $usuario, $password) or die ("No se ha podido conectar.");
+
+                    //Después de que creamos la conexión seleccionamos la base de datos
+                    $db = mysqli_select_db($conexion, $basededatos) or die ("No se encontro la base de datos");
+
+                    //Realizamos la consulta y guardamos el contenido en una variable $resultado
+                    $consulta = "INSERT INTO `estudiante` (`id_estudiante`, `nombre_estudiante`, `apellido_estudiante`, `fec_nac_estudiante`, `grado_estudiante`, `carrera_estudiante`) 
+                    VALUES (NULL,'" . $nombre ."','" . $apellido ."','". $fecnac ."','" . $grado ."','" . $carrera ."')";
+                    
+                    $resultado = mysqli_query($conexion, $consulta) ;
+                    
+                    $respuesta = "Se inserto el registro: $nombre $apellido" or die ("Algo salio mal con la consulta");
+                    echo $respuesta;
+
+
+                    //Cerramos nuestra conexión a la base de datos
+                    mysqli_close($conexion);
+
+                    ?>
+                  
+                
+              </div>
             </div>
             <!-- /.card -->
 
@@ -172,7 +176,5 @@
 <script src="/AdminLTE-3.2.0/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="/AdminLTE-3.2.0/dist/js/demo.js"></script>
-
-
 </body>
 </html>
