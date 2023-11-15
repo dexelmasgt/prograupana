@@ -8,9 +8,9 @@
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="./AdminLTE-3.2.0/plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="/AdminLTE-3.2.0/plugins/fontawesome-free/css/all.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="./AdminLTE-3.2.0/dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="/AdminLTE-3.2.0/dist/css/adminlte.min.css">
 </head>
 <body class="hold-transition sidebar-mini">
 <!-- Site wrapper -->
@@ -39,19 +39,13 @@
           <li class="nav-item">
            
               <li class="nav-item">
-                <a href="index.php" class="nav-link active">
+                <a href="index.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Ejercicio 1</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="consultar.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Consultar en BD</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="insertar1.php" class="nav-link">
+                <a href="insertar1.php" class="nav-link active">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Insertar en BD</p>
                 </a>
@@ -75,7 +69,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Laboratorio 21-10-2023</h1>
+            <h1>INSERTAR EN BASE DE DATOS</h1>
           </div>
           
         </div>
@@ -88,7 +82,7 @@
       <!-- Default box -->
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Analisis de salarios</h3>
+          <h3 class="card-title">Datos para insertar</h3>
 
           <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
@@ -103,33 +97,72 @@
           <!-- general form elements -->
           <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Analisis de salarios</h3>
+                <h3 class="card-title">Datos del alumno</h3>
               </div>
               <!-- /.card-header -->
+
+              <?php
+                        //Ejemplo de conexión a base de datos MySQL con PHP.
+
+                        //Guardamos en viariables los parámetros de la base de datos
+                        $usuario = "root";
+                        $password = "";
+                        $servidor = "localhost";
+                        $basededatos = "prograupana2";
+                        $id = $_GET['id'];
+
+                        //Creamos la conexión a la base de datos. Usamos la función mysqli_connect()
+                        $conexion = mysqli_connect($servidor, $usuario, $password) or die ("No se ha podido conectar.");
+
+                        //Después de que creamos la conexión seleccionamos la base de datos
+                        $db = mysqli_select_db($conexion, $basededatos) or die ("No se encontro la base de datos");
+
+                        //Realizamos la consulta y guardamos el contenido en una variable $resultado
+                        $consulta = "SELECT * FROM estudiante WHERE id_estudiante=$id";
+                        $resultado = mysqli_query($conexion, $consulta) or die ("Algo salio mal con la consulta");
+
+                        //Mostramos el resultado que ya traemos de la BD
+
+
+                            //Guardamos el contenido de la consulta a la BD en un arreglo
+                            $columna = mysqli_fetch_array($resultado);
+                            
+
+
+                        //Cerramos nuestra conexión a la base de datos
+                        mysqli_close($conexion);
+
+                    ?>
+
               <!-- form start -->
-              <form action="salario.php" method="post">
+              <form action="insertar2.php" method="post">
                 <div class="card-body">
                   <div class="form-group">
                     <label for="nombre">Nombres</label>
-                    <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombres">
+                    <input type="text" class="form-control" id="nombre" name="nombre" value=" <?php echo $columna['nombre_estudiante']; ?> ">
                   </div>
                   <div class="form-group">
                     <label for="apellidos">Apellidos</label>
-                    <input type="text" class="form-control" id="apellidos" name="apellido" placeholder="Apellidos">
+                    <input type="text" class="form-control" id="apellidos" name="apellido" value="<?php echo $columna['apellido_estudiante']; ?>">
                   </div>
                   <div class="form-group">
-                    <label for="salario">Salario</label>
-                    <input  step="any" type="number" class="form-control" id="salario" name="salario" placeholder="Salario">
+                    <label for="fecnac">Fecha de nacimiento</label>
+                    <input  step="any" type="text" class="form-control" id="fecnac" name="fecnac" value="<?php echo $columna['fec_nac_estudiante']; ?>">
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="grado">Grado</label>
+                    <input type="text" class="form-control" id="grado" name="grado" value="<?php echo $columna['grado_estudiante']; ?>" >
                   </div>
                   <div class="form-group">
-                    <label for="edad">Edad</label>
-                    <input  step="any" type="number" class="form-control" id="edad" name="edad" placeholder="Edad">
+                    <label for="carrera">Carrera</label>
+                    <input type="text" class="form-control" id="carrera" name="carrera" value="<?php echo $columna['carrera_estudiante']; ?>" >
                   </div>
                 </div>
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Analizar</button>
+                  <button type="submit" class="btn btn-primary">Guardar</button>
                 </div>
                 
               </form>
@@ -165,13 +198,13 @@
 <!-- ./wrapper -->
 
 <!-- jQuery -->
-<script src="./AdminLTE-3.2.0/plugins/jquery/jquery.min.js"></script>
+<script src="/AdminLTE-3.2.0/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
-<script src="./AdminLTE-3.2.0/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/AdminLTE-3.2.0/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
-<script src="./AdminLTE-3.2.0/dist/js/adminlte.min.js"></script>
+<script src="/AdminLTE-3.2.0/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="./AdminLTE-3.2.0/dist/js/demo.js"></script>
+<script src="/AdminLTE-3.2.0/dist/js/demo.js"></script>
 
 
 </body>
