@@ -69,7 +69,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>INSERTAR EN BASE DE DATOS</h1>
+            <h1>BORRAR REGISTRO</h1>
           </div>
           
         </div>
@@ -82,7 +82,7 @@
       <!-- Default box -->
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Datos para insertar</h3>
+          <h3 class="card-title">Confirmacion</h3>
 
           <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
@@ -94,83 +94,19 @@
           </div>
         </div>
         <div class="card-body">
-          <!-- general form elements -->
-          <div class="card card-primary">
-              <div class="card-header">
-                <h3 class="card-title">Datos del alumno</h3>
-              </div>
-              <!-- /.card-header -->
+        <?php
+        $id = $_GET['id'];
 
-              <?php
-                        //Ejemplo de conexión a base de datos MySQL con PHP.
+        ?>
 
-                        //Guardamos en viariables los parámetros de la base de datos
-                        $usuario = "root";
-                        $password = "";
-                        $servidor = "localhost";
-                        $basededatos = "prograupana2";
-                        $id = $_GET['id'];
+        <div class="col-md-12">
+            <h2>Estas seguro que lo quieres borrar?</h2>
+            <h2><a href="borrar2.php/?id=<?php echo $id; ?>">SI</a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+            <a href="consultar.php">NO</a></h2>
+            
+          </div>
+          <!-- /.col -->  
 
-                        //Creamos la conexión a la base de datos. Usamos la función mysqli_connect()
-                        $conexion = mysqli_connect($servidor, $usuario, $password) or die ("No se ha podido conectar.");
-
-                        //Después de que creamos la conexión seleccionamos la base de datos
-                        $db = mysqli_select_db($conexion, $basededatos) or die ("No se encontro la base de datos");
-
-                        //Realizamos la consulta y guardamos el contenido en una variable $resultado
-                        $consulta = "SELECT * FROM estudiante WHERE id_estudiante=$id";
-                        $resultado = mysqli_query($conexion, $consulta) or die ("Algo salio mal con la consulta");
-
-                        //Mostramos el resultado que ya traemos de la BD
-
-
-                            //Guardamos el contenido de la consulta a la BD en un arreglo
-                            $columna = mysqli_fetch_array($resultado);
-                            
-
-
-                        //Cerramos nuestra conexión a la base de datos
-                        mysqli_close($conexion);
-
-                    ?>
-
-              <!-- form start -->
-              <form action="editar2.php" method="post">
-                <div class="card-body">
-                    <input type="hidden" class="form-control" id="id" name="id" value=" <?php echo $columna['id_estudiante']; ?> ">
-                  <div class="form-group">
-                    <label for="nombre">Nombres</label>
-                    <input type="text" class="form-control" id="nombre" name="nombre" value=" <?php echo $columna['nombre_estudiante']; ?> ">
-                  </div>
-                  <div class="form-group">
-                    <label for="apellidos">Apellidos</label>
-                    <input type="text" class="form-control" id="apellidos" name="apellido" value="<?php echo $columna['apellido_estudiante']; ?>">
-                  </div>
-                  <div class="form-group">
-                    <label for="fecnac">Fecha de nacimiento</label>
-                    <input  step="any" type="text" class="form-control" id="fecnac" name="fecnac" value="<?php echo $columna['fec_nac_estudiante']; ?>">
-                  </div>
-                  
-                  <div class="form-group">
-                    <label for="grado">Grado</label>
-                    <input type="text" class="form-control" id="grado" name="grado" value="<?php echo $columna['grado_estudiante']; ?>" >
-                  </div>
-                  <div class="form-group">
-                    <label for="carrera">Carrera</label>
-                    <input type="text" class="form-control" id="carrera" name="carrera" value="<?php echo $columna['carrera_estudiante']; ?>" >
-                  </div>
-                </div>
-                <!-- /.card-body -->
-
-                <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Guardar</button>
-                </div>
-                
-              </form>
-            </div>
-            <!-- /.card -->
-
-            <!-- general form elements -->
         </div>
         <!-- /.card-body -->
         
