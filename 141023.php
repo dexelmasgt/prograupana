@@ -12,7 +12,7 @@ function verificarMultiplo2($num){
         return false;
     }
 }
-
+//ESTE COMENTARIO ES NUEVO
 function dividir_y_verificar_multiplo_2($num1, $num2){
     $resultado = dividir($num1, $num2);
     $multiplo = verificarMultiplo2($resultado);
