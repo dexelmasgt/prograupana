@@ -16,6 +16,13 @@
                             $password = $_POST['pass'];
                            
                             if ($email==$usuario['correo_usuario'] && $password==$usuario['password_usuario']) {
+                                session_start();
+
+                                $_SESSION['id_usuario'] = $usuario['id_usuario'];
+                                $_SESSION['nombre_usuario'] = $usuario['nombre_usuario'];
+                                $_SESSION['correo_usuario'] = $usuario['correo_usuario'] ;
+
+                                
                                 header("Location: tareas.php");
                             }else{
                                 header("Location: index.php");
